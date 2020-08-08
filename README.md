@@ -1,6 +1,6 @@
 <h1> Projeto do jogo de cartas Uno feito em C e C++ </h1>
 
-<p> Trabalho feito para a matéria de Estrutura de Dados, usando pilha, fila e lista simplesmente encadeada | Nota final = 9.7 </p>
+<p> Trabalho feito para a matéria de Estrutura de Dados, usando pilha, fila e lista simplesmente encadeada | <b> Nota final = 9.7  </b> </p>
 <h3> Projeto contem erros na parte da jogabilidade, já que em ambiente cmd é mais complexo, Porém se seguir as regras o jogo funcionara normalmente.</h3>
 
 ![Screenshot](https://i.postimg.cc/X7pcdfL5/2020-08-07-22-37.png)
