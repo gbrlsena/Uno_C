@@ -3,11 +3,11 @@
 <p> Trabalho feito para a matéria de Estrutura de Dados, usando pilha, fila e lista simplesmente encadeada | Nota final = 9.7 </p>
 <h3> Projeto contem erros na parte da jogabilidade, já que em ambiente cmd é mais complexo, Porém se seguir as regras o jogo funcionara normalmente.</h3>
 
-![Screenshot](https://i.postimg.cc/yNVwVph9/2020-08-07-22-37.png)
+![Screenshot](https://i.postimg.cc/X7pcdfL5/2020-08-07-22-37.png)
 
 <h3> Como Funciona </h3>
 
-![Screenshot](https://i.postimg.cc/q7jWgcQF/2020-08-07-22-35-02.png)
+![Screenshot](https://i.postimg.cc/1RWr8CGP/2020-08-07-22-35-02.png)
 
 <p>Em baralho.h se inicia uma pilha contendo as cartas. Cada carta tem um número e uma cor. De maneira aleatória essas cartas são inseridas na tp_pilha baralho onde depois será usada em mao.h que é lista simplesmente encadeada.
 De forma aleatória as cartas da pilha são inseridas na mão dos jogadores e por último é colocada na mesa.
@@ -15,7 +15,7 @@ Depois começa o jogo de fato. </p>
 
 <h3> Como Jogar </h3>
 
-![Screenshot](https://i.postimg.cc/bw07ffnp/2020-08-07-22-35-01.png)
+![Screenshot](https://i.postimg.cc/rsY17sVz/2020-08-07-22-35-01.png)
 
 <p> Começando com o Jogador 1 ele escolhe sua carta baseada na mesa.
 Se for igual à cor ou o número, essa carta passa por uma verificação para ver se essa carta realmente exite na mão do jogador.
@@ -26,4 +26,4 @@ Todas as cartas funcionam como se fosse um Uno normal, sendo o +2 adicionando ma
 
 <h3> Como as cartas são salvas </h3>
 
-![Screenshot](https://i.postimg.cc/pTr4j96L/2020-08-07-23-12.png)
+![Screenshot](https://i.postimg.cc/nL866crd/2020-08-07-23-12.png)
