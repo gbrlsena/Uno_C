@@ -8,21 +8,21 @@
 #include <conio.h>
 #include <windows.h>
 
-typedef struct {
+typedef struct { //criação da struct carta 
     int numero;
     int cor;
 } carta;
 
-typedef struct {
+typedef struct {  // cria o tipo tp_pilha
     int topo;
     carta c[MAX];
 } tp_pilha;
 
-void inicializa_pilha(tp_pilha *p){
+void inicializa_pilha(tp_pilha *p){ // inicializa o tp_pilha
     p->topo = -1;
 }
 
-int pilha_vazia(tp_pilha *p){
+int pilha_vazia(tp_pilha *p){ // Verifica se a pilha está vazia
     if(p->topo == -1){
         return 1;
     }else{
@@ -30,7 +30,7 @@ int pilha_vazia(tp_pilha *p){
     }
 }
 
-int pilha_cheia(tp_pilha *p){
+int pilha_cheia(tp_pilha *p){  // Verifica se a pilha está cheia
     if(p->topo == MAX-1){
         return 1;
     }else{
@@ -38,7 +38,7 @@ int pilha_cheia(tp_pilha *p){
     }
 }
 
-int push(tp_pilha *p, carta c){
+int push(tp_pilha *p, carta c){ // Inserindo novo elemento no topo da pilha
     if(pilha_cheia(p)){
         return 0;
     }else{
@@ -48,7 +48,7 @@ int push(tp_pilha *p, carta c){
     }
 }
 
-int pop(tp_pilha *p, carta *c){
+int pop(tp_pilha *p, carta *c){ // Removendo elemento do topo da pilha
     if(pilha_vazia(p)){
         return 0;
     }else{
@@ -58,23 +58,23 @@ int pop(tp_pilha *p, carta *c){
     }
 }
 
-int altura_pilha(tp_pilha *p){
+int altura_pilha(tp_pilha *p){ // Imprime quantas cartas tem e retorna essa quantidade
 	printf("%d", p->topo+1);
     return p->topo+1;
 }
 
-void carta_mesa (tp_pilha *mesa, tp_pilha *baralho){
+void carta_mesa (tp_pilha *mesa, tp_pilha *baralho){ // Remove do baralho a carta e insere na mesa ( esta separado somente para organizção )
 	inicializa_pilha(mesa);
 	carta c;
 	pop(baralho,&c);
 	push(mesa,c);
 }
 
-void imprime_pilha(tp_pilha p){
+void imprime_pilha(tp_pilha p){ // Imprime a pilha 
     carta c;
     printf("\n");
     while(!pilha_vazia(&p)){
-        pop(&p,&c);
+        pop(&p,&c);            
         if (c.numero == 66) {
         	printf("Cor = %d Numero = Block  \n",c.cor);
 		}
@@ -94,10 +94,9 @@ void imprime_pilha(tp_pilha p){
         	printf("Cor = %d Numero = %d \n",c.cor, c.numero);
 		}
 		} 
-        //printf("Cor = %d Numero = %d\n",c.cor,c.numero);
     }
                      
-bool Existe ( int valores[] , int tam , int valor ){
+bool Existe ( int valores[] , int tam , int valor ){  // Verificar se a carta já foi inserida no baralho e retorna true ou false
 	for ( int i = 0 ; i < tam ; i++){
 		if(valores[i] == valor )
 		return true;	
@@ -105,25 +104,28 @@ bool Existe ( int valores[] , int tam , int valor ){
 	return false;
 }	
 	
-void GerarNumerosAmarelo (int numerosAmarelo[], int quantNumeros , int limiteAmarelo ){
+void GerarNumerosAmarelo (int numerosAmarelo[], int quantNumeros , int limiteAmarelo ){ // Função para gerar os numeros Amarelos
 		
 		
 		int vAmarelo;
-		for ( int z = 0 ; z < quantNumeros ; z++){
-			vAmarelo = rand() % limiteAmarelo;
+		for ( int z = 0 ; z < quantNumeros ; z++){ // Passa no for 19 vezes ( que é a quantNumeros )
+			vAmarelo = rand() % limiteAmarelo; // Gera numeros aleatorios entre 0 e 19
 			//printf("%d ", vAmarelo);
-			while (Existe(numerosAmarelo,z,vAmarelo)) {
+			while (Existe(numerosAmarelo,z,vAmarelo)) { // Verfica se a carta ja existe 
 				vAmarelo = rand() % limiteAmarelo;
 			}
-			if ( vAmarelo != 10) {
+			if ( vAmarelo != 10) { // Se a carta for diferente de 10 ela é inserida 
 			numerosAmarelo[z] = vAmarelo;
 		} else {
-			z--;
+			z--; // Se for igual a 10 ele n entra 
 	}
 	}
 }
 
-void GerarNumerosAzul (int numerosAzul[], int quantNumeros , int limiteAzul ){
+// A função ira gerar numeros entre 0 e 19, menos a carta 10 e o porque disso é explicado na main 
+
+void GerarNumerosAzul (int numerosAzul[], int quantNumeros , int limiteAzul ){ // A mesma coisa é aplicada para todas as cores, foi colocado 4 vezes, 
+                                                                              // pois assim as caras são geradas mais aleatorias e não fica parecido
 		
 		
 		int vAzul;
@@ -180,9 +182,10 @@ void GerarNumerosVerde (int numerosVerde[], int quantNumeros , int limiteVerde )
 	}
 }
 
-int criar_baralho (tp_pilha *baralho) {
+int criar_baralho (tp_pilha *baralho) { // Funcao para criar o baralho
 	carta c;
-	tp_pilha amarelo, azul, vermelho, verde, preto,especiais;
+	tp_pilha amarelo, azul, vermelho, verde, preto,especiais; // cria as pilhas de cores 
+	//// Inicializa as pilhas de cor ///// 
 	inicializa_pilha(&amarelo);
 	inicializa_pilha(&azul);
 	inicializa_pilha(&vermelho);
@@ -190,41 +193,41 @@ int criar_baralho (tp_pilha *baralho) {
 	inicializa_pilha(&preto);
 	inicializa_pilha(&especiais);
 	inicializa_pilha(baralho);
-//	char lista[5][19] = {"Yellow", "Blue", "Red", "Green", "Black"};
 	
 	srand(time(NULL));
 ///////////////////////////////////////////////////////// Amarelo
-	for ( int w = 0 ; w < 2 ; w++){
+	for ( int w = 0 ; w < 2 ; w++){ // Inserindo carta especial Bloqueio, inserindo na pilha especial 
 		c.cor =0;
 		c.numero = 66; 
 		push(&especiais, c);
 }
-	for ( int w = 0 ; w < 2 ; w++){
+	for ( int w = 0 ; w < 2 ; w++){ // Inserindo carta especial Reverse, inserindo na pilha especial
 		c.cor = 0; 
 		c.numero = 82;
 		push(&especiais, c);
 }
-		int numerosAmarelo[19];
-		GerarNumerosAmarelo(numerosAmarelo , 19 , 20);
+		int numerosAmarelo[19]; 
+		GerarNumerosAmarelo(numerosAmarelo , 19 , 20); // Chama a função de gerar as cores e numeros
 		c.cor = 0;
-		for ( int i = 0 ; i < 19 ; i++){
+		for ( int i = 0 ; i < 19 ; i++){ 
 			
-			if ( numerosAmarelo[i] > 10){
-				numerosAmarelo[i] = numerosAmarelo[i] - 10;
-			//	printf("%d  ", numerosAmarelo[i]);
-				c.numero = numerosAmarelo[i];
+			if ( numerosAmarelo[i] > 10){ // Se a os numeros forem maiores que 10
+				numerosAmarelo[i] = numerosAmarelo[i] - 10; // Ele é subtraido por 10
+			//	printf("%d  ", numerosAmarelo[i]);           // O motivo disso é que como gera de 0 a 19, assim teremos 2 numeros 1, 2 numeros 2 ....
+				c.numero = numerosAmarelo[i];                  // Não temos o numero 10, pois no Uno so existe uma carta numero 0
 				push(&amarelo, c);
 			} else {
 	
-		c.numero = numerosAmarelo[i];
+		c.numero = numerosAmarelo[i]; // Se não for maior que 10, entra normal
 		push(&amarelo, c); }
 	}
-		for ( int w = 0 ; w < 2 ; w++){
+		for ( int w = 0 ; w < 2 ; w++){ // Inserindo carta especial +2, inserindo na pilha especial
 		c.cor = 0;
 		c.numero = 43; 
 		push(&especiais, c);
 }
 ///////////////////////////////////////////////////////// Azul
+///////////////////////////////////////////////////////// A mesma coisa que acontece com o amarelo, acontece com as outras cores
 		for ( int w = 0 ; w < 2 ; w++){
 		c.cor = 1;
 		c.numero = 43;
@@ -255,6 +258,7 @@ int criar_baralho (tp_pilha *baralho) {
 		push(&especiais, c);
 }
 ///////////////////////////////////////////////////////// Vermelho
+///////////////////////////////////////////////////////// A mesma coisa que acontece com o amarelo, acontece com as outras cores
 		for ( int w = 0 ; w < 2 ; w++){
 		c.cor = 2;
 		c.numero = 66;
@@ -284,6 +288,7 @@ int criar_baralho (tp_pilha *baralho) {
 }
 	
 ///////////////////////////////////////////////////////// Verde
+///////////////////////////////////////////////////////// A mesma coisa que acontece com o amarelo, acontece com as outras cores
 		for ( int w = 0 ; w < 2 ; w++){
 		c.cor = 3;
 		c.numero = 43;
@@ -316,13 +321,12 @@ int criar_baralho (tp_pilha *baralho) {
 	int contW = 4;
     int contM = 4;
     int auxp = 0;
-	for(int m=0 ; m<8 ; m++){
-        auxp = rand()%2;
-       //  printf("%d - %d - %d  ///   ", auxp, contW , contM);
-    if(auxp == 0){
+	for(int m=0 ; m<8 ; m++){  // função pra inserir carta Troca de cor e +4
+        auxp = rand()%2; // De forma aleatoria entre 0 e 1
+    if(auxp == 0){ 
     	if(contW > 0  ){
         	c.cor = 4;
-        	c.numero = 84; 
+        	c.numero = 84; // Carta T = Troca de cor 
             push(&preto,c);
             contW--;
         }
@@ -332,10 +336,10 @@ int criar_baralho (tp_pilha *baralho) {
 }	
 	else
 			
-	if(auxp == 1){
+	if(auxp == 1){ 
     	if(contM > 0){
         	c.cor = 4;
-        	c.numero = 77;  
+        	c.numero = 77;  // Carta M = +4 
             push(&preto,c);
             contM--;
     		} 	
@@ -346,7 +350,7 @@ int criar_baralho (tp_pilha *baralho) {
 				
 }
 //imprime_pilha(especiais); 
-/////////////////////////////////////////////////Printar as pilhas at� aqui
+///////////////////////////////////////////////// Printar as pilhas até aqui
 
 /*
 imprime_pilha(amarelo); 
@@ -377,7 +381,7 @@ int aux = 0;
     aux = rand()%6;
    // printf("%d ", aux);
     if(aux == 0){
-    	if(!pilha_vazia(&vermelho)){
+    	if(!pilha_vazia(&vermelho)){ //Se a pilha vermelha não estiver vazia, ele retirará da pilha e adicionará (de forma aleatória) na pilha baralho
         	pop(&vermelho,&c);
             push(baralho,c);
         } 
@@ -388,7 +392,7 @@ int aux = 0;
 			else
 			
 	if(aux == 1){
-    	if(!pilha_vazia(&azul)){
+    	if(!pilha_vazia(&azul)){//Se a pilha azul não estiver vazia, ele retirará da pilha e adicionará (de forma aleatória) na pilha baralho
         	pop(&azul,&c);
             push(baralho,c);
     	}
@@ -399,7 +403,7 @@ int aux = 0;
 			else
 			
     if(aux == 2){
-        if(!pilha_vazia(&amarelo)){
+        if(!pilha_vazia(&amarelo)){//Se a pilha amarela não estiver vazia, ele retirará da pilha e adicionará (de forma aleatória) na pilha baralho
         	pop(&amarelo,&c);
             push(baralho,c);
         } 
@@ -410,7 +414,7 @@ int aux = 0;
 			else
             
 	if(aux == 3){
-    	if(!pilha_vazia(&verde)){
+    	if(!pilha_vazia(&verde)){//Se a pilha verde não estiver vazia, ele retirará da pilha e adicionará (de forma aleatória) na pilha baralho
         	pop(&verde,&c);
             push(baralho,c);
         } 
@@ -420,7 +424,7 @@ int aux = 0;
 }
 
 	if(aux == 4){
-    	if(!pilha_vazia(&preto)){
+    	if(!pilha_vazia(&preto)){ //Se a pilha de cartas pretas não estiver vazia, ele retirará da pilha e adicionará (de forma aleatória) na pilha baralho
         	pop(&preto,&c);
             push(baralho,c);
         } 
@@ -429,8 +433,8 @@ int aux = 0;
 		}
 }
 	if(aux == 5){
-    	if(!pilha_vazia(&especiais)){
-        	pop(&especiais,&c);
+    	if(!pilha_vazia(&especiais)){ //Se a pilha das cartas especiais não estiver vazia, ele retirará da pilha e adicionará (de forma aleatória) na pilha baralho
+        	pop(&especiais,&c); // Lembrando que essa pilha, guarda as especiais de todas as cores 
             push(baralho,c);
         } 
 		else { 
