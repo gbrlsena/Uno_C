@@ -7,6 +7,7 @@
 #include <windows.h>
 #include "baralho.h"
 #include "mao.h"
+#include "menu.h"
 
 
 void jogar (tp_pilha *baralho, tp_pilha *mesa, Lista *jogador1,Lista *jogador2, int vez){
