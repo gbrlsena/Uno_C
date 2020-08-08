@@ -26,7 +26,7 @@ Todas as cartas funcionam como se fosse um Uno normal, sendo o +2 adicionando ma
 
 <p> Olhando como exemplo a foto, a carta da mesa é Cor = 0 e Número = Block 
   O jogador 1 só pode jogar as cartas digitando da seguinte forma <b> 0 Block - 0 9 - 07 - 0 2 </b>
-  /p>
+ </p>
 
 <h3> Como as cartas são salvas </h3>
 
